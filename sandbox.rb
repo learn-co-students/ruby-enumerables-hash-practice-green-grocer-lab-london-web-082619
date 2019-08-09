@@ -6,18 +6,20 @@ def consolidate_cart(cart)
     else
       cart_hash[item.keys[0]] = {
         price: item.values[0][:price],
-        clearance: item.values[0][:clearance],
+        clearance: item.values[0][:price],
         count: 1
       }
     end
   end
-  cart_hash
+  p cart_hash
 end
 
 def apply_coupons(cart, coupons)
   coupons.each do | coupon |
     if cart.has_key?(coupon[:item]) && cart[coupon[:item]][:count] >= coupon[:num]
+      p "Meets first criteria"
       if cart.has_key?("#{coupon[:item]} W/COUPON")
+        p "Meets inner criteria"
         cart["#{coupon[:item]} W/COUPON"][:count] += coupon[:num]
       else
         cart["#{coupon[:item]} W/COUPON"] = {
@@ -32,23 +34,8 @@ def apply_coupons(cart, coupons)
   cart
 end
 
-def apply_clearance(cart)
-  cart.each_pair do | key, value |
-    if cart[key][:clearance]
-      cart[key][:price] = (cart[key][:price] * 0.8).round(2)
-    end
-  end
-  cart
-end
+cart =  {"AVOCADO" => {:price => 3.00, :clearance => true, :count => 5}}
 
-def checkout(cart, coupons)
-  consolidated_cart = consolidate_cart(cart)
-  coupons_cart = apply_coupons(consolidated_cart, coupons)
-  clearance_cart = apply_clearance(coupons_cart)
+coupons = [{:item => "AVOCADO", :num => 2, :cost => 5.00}, {:item => "AVOCADO", :num => 2, :cost => 5.00}]
 
-  total = clearance_cart.values.reduce(0) { | memo, item |
-    memo += item[:price] * item[:count]
-  }
-  
-  total > 100 ? (total * 0.9).round(2) : total
-end
+apply_coupons(cart, coupons)
