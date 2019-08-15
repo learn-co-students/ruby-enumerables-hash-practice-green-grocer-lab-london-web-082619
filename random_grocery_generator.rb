@@ -1,5 +1,7 @@
 require_relative 'grocer'
 
+end
+
 def items
 	[
 		{"AVOCADO" => {:price => 3.00, :clearance => true}},
@@ -12,6 +14,10 @@ def items
 		{"PEANUTBUTTER" => {:price => 3.00, :clearance => true}},
 		{"BEETS" => {:price => 2.50, :clearance => false}}
 	]
+end
+
+def consolidate_cart(grocer)
+  
 end
 
 def coupons
