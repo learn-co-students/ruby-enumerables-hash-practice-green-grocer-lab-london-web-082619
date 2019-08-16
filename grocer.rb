@@ -44,6 +44,11 @@ def apply_coupons(cart, coupons)
 end
 
 def apply_clearance(cart)
+  #I iterate into  cart using .each then use an "if" statement to check if the :clearance key is true.
+  #If true,I need to discount and update  item price
+  #I can do this by assigning  key a new value, in this case, the value is item :price multiplied by 0.8
+  #(which is the same as taking 20% off) and rounded to 2 decimal places
+  #Then return updated cart.
   cart.each do |item, attribute_hash|
     if attribute_hash[:clearance] == true
       attribute_hash[:price] = (attribute_hash[:price] *
@@ -54,16 +59,24 @@ cart
 end
 
 def checkout(items, coupons)
+  #The first I run consolidate_cart method with the cart hash that is passed in,
+  # and store the return from this method in a variable; I call it cart
+  #This is the new consolidated cart
   cart = consolidate_cart(items)
+  #Run apply_coupons method with our consolidated cart1 and the coupons that will passed in as an argument.
   cart1 = apply_coupons(cart, coupons)
+  #Run our apply_clearance method with our newly created cart1
+  # and store this in a variable as well, cart2
   cart2 = apply_clearance(cart1)
-
+#create a variable total to store the final cart total
   total = 0
-
+#I iterate into cart2 using .each. Then I increment
+#total variable by multiplying each item's :price by each item's :count
+#and then adding this to  running total.
+#This will update total variable as I iterate through every item in the cart
   cart2.each do |name, price|
     total += price[:price] * price[:count]
   end
-
+#Last, I’ll check if  total is over 100. If so, I'll take 10% off. Here is the code that accomplishes this:
   total > 100 ? total * 0.9 : total
-
 end
