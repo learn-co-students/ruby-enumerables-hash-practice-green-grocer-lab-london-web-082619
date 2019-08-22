@@ -2,18 +2,19 @@
 
 #require 'pry'
 
+require 'pry'
+
 def consolidate_cart(cart)
   new_hash  = {}
-  cart.each do |el|
-    key = el.keys[0]
-  #binding.pry
+  cart.each do |element_in_cart|
+    key = element_in_cart.keys[0]
+#binding.pry
     if new_hash[key]
     new_hash[key][:count] +=1
   else
-    new_hash[key] = el.values[0]
+    new_hash[key] = element_in_cart.values[0]
     new_hash[key][:count] = 1
      end
-
   end
   new_hash
 
