@@ -85,4 +85,4 @@ coupons = [
       {:item => "CHEESE", :num => 2, :cost => 15.00}
     ]
 
-checkout(items, coupons)
+checkout(items, coupos)
