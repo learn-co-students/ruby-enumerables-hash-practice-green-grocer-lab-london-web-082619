@@ -1,6 +1,5 @@
 require 'pry'
 
-
 def consolidate_cart(cart)
   new_hash  = {}
   cart.each do |element_in_cart| # key&value
@@ -33,6 +32,10 @@ def consolidate_cart(cart)
 end
 =end
 
+def apply_coupons
+
+
+=begin
 def apply_coupons(cart, coupons)
   coupons.each do |coupon|
     if cart.keys.include?(coupon[:item])
@@ -53,6 +56,7 @@ def apply_coupons(cart, coupons)
   end
   cart
 end
+=end
 
 def apply_clearance(cart)
   cart.keys.each do |item|
