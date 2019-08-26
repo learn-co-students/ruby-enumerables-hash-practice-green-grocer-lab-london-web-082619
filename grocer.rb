@@ -32,7 +32,11 @@ def consolidate_cart(cart)
 end
 =end
 
-def apply_coupons
+def apply_coupons(cart, coupons)
+  coupons.each do |coupon|
+    if (cart.keys.include?(coupon[:item]) && cart[coupon[:item][:count] >= coupon[:num])
+      new_name = "#{coupon[:item]} W/COUPON"
+end
 
 
 =begin
