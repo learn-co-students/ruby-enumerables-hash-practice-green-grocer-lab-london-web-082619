@@ -1,24 +1,37 @@
-
-
-#require 'pry'
-
 require 'pry'
 
+
+def consolidate_cart(cart)
+  new_hash  = {}
+  cart.each do |element_in_cart| # key&value
+  key = element_in_cart.keys[0]
+   if new_hash[key]
+      new_hash[key][:count] += 1
+     else
+     new_hash[key] = element_in_cart.values[0]
+     new_hash[key][:count] = 1
+     end
+  end
+  new_hash
+end
+
+
+=begin
 def consolidate_cart(cart)
   new_hash  = {}
   cart.each do |element_in_cart|
     key = element_in_cart.keys[0]
+   if new_hash[key]
+      new_hash[key][:count] += 1
+     else
+     new_hash[key] = element_in_cart.values[0]
 #binding.pry
-    if new_hash[key]
-    new_hash[key][:count] +=1
-  else
-    new_hash[key] = element_in_cart.values[0]
-    new_hash[key][:count] = 1
+     new_hash[key][:count] = 1
      end
   end
   new_hash
-
 end
+=end
 
 def apply_coupons(cart, coupons)
   coupons.each do |coupon|
